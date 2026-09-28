@@ -865,30 +865,34 @@
 
                 <!-- ERROR -->
 
-                @if($errors->any())
+            @if(session('error'))
+                <div class="error">
+                    <strong>Terjadi kesalahan:</strong>
+                    {{ session('error') }}
+                </div>
+            @endif
 
-                    <div class="error">
+            @if($errors->any())
+                <div class="error">
 
-                        <strong>
-                            Terjadi kesalahan:
-                        </strong>
+                    <strong>
+                        Terjadi kesalahan:
+                    </strong>
 
+                    <ul>
 
-                        <ul>
+                        @foreach($errors->all() as $error)
 
-                            @foreach($errors->all() as $error)
+                            <li>
+                                {{ $error }}
+                            </li>
 
-                                <li>
-                                    {{ $error }}
-                                </li>
+                        @endforeach
 
-                            @endforeach
+                    </ul>
 
-                        </ul>
-
-                    </div>
-
-                @endif
+                </div>
+            @endif
 
 
 

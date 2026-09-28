@@ -479,7 +479,8 @@
 
 
         input[type="text"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="email"] {
 
             width: 100%;
 
@@ -505,7 +506,8 @@
 
 
         input[type="text"]:focus,
-        input[type="password"]:focus {
+        input[type="password"]:focus,
+        input[type="email"]:focus {
 
             outline: none;
 
@@ -527,7 +529,7 @@
 
 
         /* =====================================================
-           REMEMBER + LUPA PASSWORD
+           TAMPILKAN PASSWORD + LUPA PASSWORD
         ===================================================== */
 
         .form-options {
@@ -566,6 +568,8 @@
             height: 15px;
 
             accent-color: #3E6BA8;
+
+            cursor: pointer;
 
         }
 
@@ -738,7 +742,20 @@
         </p>
 
 
-        <!-- ERROR -->
+        <!-- ERROR LOGIN -->
+
+        @if(session('error'))
+
+            <div class="error">
+
+                ❌ {{ session('error') }}
+
+            </div>
+
+        @endif
+
+
+        <!-- ERROR VALIDASI -->
 
         @if($errors->any())
 
@@ -821,12 +838,11 @@
 
                     <input
                         type="checkbox"
-                        id="remember"
-                        name="remember"
+                        id="showPassword"
                     >
 
-                    <label for="remember">
-                        Ingat saya
+                    <label for="showPassword">
+                        Tampilkan kata sandi
                     </label>
 
                 </div>
@@ -857,6 +873,36 @@
 
 
     </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT TAMPILKAN PASSWORD
+    ===================================================== -->
+
+    <script>
+
+        const showPassword =
+            document.getElementById('showPassword');
+
+        const password =
+            document.getElementById('password');
+
+
+        showPassword.addEventListener('change', function () {
+
+            if (this.checked) {
+
+                password.type = 'text';
+
+            } else {
+
+                password.type = 'password';
+
+            }
+
+        });
+
+    </script>
 
 
 </body>

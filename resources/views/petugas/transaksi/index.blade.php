@@ -423,6 +423,41 @@
             font-weight: 700;
         }
 
+        .btn-hapus {
+
+            display: inline-block;
+
+            background: #D9534F;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 17px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .btn-hapus:hover {
+
+            opacity: .85;
+        }
+
+        .aksi-wrap {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
 
         /* ================= TABLE ================= */
 
@@ -971,16 +1006,41 @@
                                 @else
 
 
-                                    <!-- TOMBOL STRUK -->
+                                    <div class="aksi-wrap">
 
-                                    <a
-                                        href="{{ route('petugas.struk.show', $item->id_parkir) }}"
-                                        class="btn-struk"
-                                    >
+                                        <!-- TOMBOL STRUK -->
 
-                                        🧾 Struk
+                                        <a
+                                            href="{{ route('petugas.struk.show', $item->id_parkir) }}"
+                                            class="btn-struk"
+                                        >
 
-                                    </a>
+                                            🧾 Struk
+
+                                        </a>
+
+                                        <!-- TOMBOL HAPUS -->
+
+                                        <form
+                                            action="{{ route('petugas.transaksi.destroy', $item->id_parkir) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus transaksi ini?')"
+                                            style="margin: 0;"
+                                        >
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="btn-hapus"
+                                            >
+                                                🗑️ Hapus
+                                            </button>
+
+                                        </form>
+
+                                    </div>
 
 
                                 @endif

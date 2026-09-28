@@ -290,4 +290,57 @@ class TransaksiController extends Controller
                 )
             );
     }
+
+
+    // =====================================================
+    // HAPUS TRANSAKSI
+    // =====================================================
+    public function destroy($id)
+    {
+        // AMBIL DATA TRANSAKSI
+        $transaksi = DB::table('tb_transaksi')
+            ->where('id_parkir', $id)
+            ->first();
+
+        // CEK DATA
+        if (!$transaksi) {
+            return redirect()
+                ->back()
+                ->with(
+                    'error',
+                    'Data transaksi tidak ditemukan!'
+                );
+        }
+
+        // TRANSAKSI YANG MASIH MASUK TIDAK BOLEH DIHAPUS
+        if ($transaksi->status === 'masuk') {
+            return redirect()
+                ->back()
+                ->with(
+                    'error',
+                    'Transaksi yang masih berstatus masuk tidak dapat dihapus!'
+                );
+        }
+
+        // HAPUS TRANSAKSI
+        DB::table('tb_transaksi')
+            ->where('id_parkir', $id)
+            ->delete();
+
+        // CATAT LOG
+        if (session('id_user')) {
+            DB::table('tb_log_aktivitas')->insert([
+                'id_user' => session('id_user'),
+                'aktivitas' => 'Menghapus transaksi parkir',
+                'waktu_aktivitas' => Carbon::now(),
+            ]);
+        }
+
+        return redirect()
+            ->route('petugas.transaksi.index')
+            ->with(
+                'success',
+                'Transaksi berhasil dihapus!'
+            );
+    }
 }
