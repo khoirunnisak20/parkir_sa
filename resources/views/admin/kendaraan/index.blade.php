@@ -214,7 +214,7 @@
         ========================= */
 
         .btn-edit {
-            background: #f59e0b;
+            background: #65c2df;
             color: white;
             border: none;
             padding: 8px 13px;
@@ -223,9 +223,8 @@
             text-decoration: none;
         }
 
-
         .btn-edit:hover {
-            background: #d97706;
+            background: #65c2df;
         }
 
 

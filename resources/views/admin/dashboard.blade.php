@@ -751,7 +751,7 @@
 
         <div class="sidebar-foot">
 
-            Parkir Kabosa v1.0
+            Parkir Kabasa v1.0
 
             <br>
 

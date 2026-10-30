@@ -848,10 +848,10 @@
                 </div>
 
 
-                <a href="#"
-                   class="forgot">
+                <a href="{{ route('password.lupa') }}"
+                    class="forgot">
 
-                    Lupa kata sandi?
+                        Lupa kata sandi?
 
                 </a>
 

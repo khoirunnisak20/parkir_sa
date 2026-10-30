@@ -201,7 +201,7 @@
         ========================= */
 
         .btn-edit {
-            background: #f59e0b;
+            background: #65c2df;
             color: white;
             border: none;
             padding: 8px 13px;

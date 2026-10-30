@@ -133,7 +133,7 @@
         }
 
         .btn-edit {
-            background: #f59e0b;
+            background: #65c2df;
             color: white;
             padding: 8px 13px;
             border-radius: 6px;

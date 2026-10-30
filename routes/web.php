@@ -40,6 +40,12 @@ Route::post('/login', [LoginController::class, 'login'])
 Route::get('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 
+Route::get('/lupa-password', [LoginController::class, 'forgotPassword'])
+    ->name('password.lupa');
+
+Route::post('/lupa-password', [LoginController::class, 'resetPassword'])
+    ->name('password.reset');
+
 
 // =====================================================
 // ADMIN

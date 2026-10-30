@@ -15,6 +15,7 @@ class LoginController extends Controller
         return view('login');
     }
 
+
     // =========================
     // PROSES LOGIN
     // =========================
@@ -67,6 +68,60 @@ class LoginController extends Controller
                     ->with('error', 'Role user tidak dikenali!');
         }
     }
+
+
+    // =========================
+    // HALAMAN LUPA PASSWORD
+    // =========================
+    public function forgotPassword()
+    {
+        return view('forgot-password');
+    }
+
+
+    // =========================
+    // PROSES RESET PASSWORD
+    // =========================
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password',
+        ], [
+            'username.required' => 'Username wajib diisi.',
+            'password.required' => 'Password baru wajib diisi.',
+            'password.min' => 'Password baru minimal 6 karakter.',
+            'password_confirmation.required' => 'Konfirmasi password wajib diisi.',
+            'password_confirmation.same' => 'Konfirmasi password tidak sama.',
+        ]);
+
+        $user = DB::table('tb_user')
+            ->where('username', $request->username)
+            ->first();
+
+        // Username tidak ditemukan
+        if (!$user) {
+
+            return back()
+                ->withInput($request->only('username'))
+                ->with('error', 'Username tidak ditemukan!');
+        }
+
+
+        // Update password
+        DB::table('tb_user')
+            ->where('id_user', $user->id_user)
+            ->update([
+                'password' => $request->password
+            ]);
+
+
+        return redirect()
+            ->route('login')
+            ->with('success', 'Password berhasil diubah! Silakan login dengan password baru.');
+    }
+
 
     // =========================
     // LOGOUT
