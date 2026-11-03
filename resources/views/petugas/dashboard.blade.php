@@ -909,77 +909,120 @@
 
         }
 
-
         /* =====================================================
-           RESPONSIVE
+        RESPONSIVE
         ===================================================== */
 
-        @media(max-width: 1200px) {
-
+        @media (max-width: 1200px) {
             .main {
-
                 padding: 28px 30px 40px;
-
             }
 
             .stats {
-
-                grid-template-columns: repeat(2, 1fr);
-
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-
         }
 
-
-        @media(max-width: 900px) {
-
+        @media (max-width: 900px) {
             .content-grid {
-
                 grid-template-columns: 1fr;
-
             }
-
-        }
-
-
-        @media(max-width: 720px) {
-
-            .sidebar {
-
-                display: none;
-
-            }
-
 
             .main {
-
-                padding: 20px;
-
+                min-width: 0;
             }
 
+            .table-wrap {
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            table {
+                min-width: 480px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                width: 100%;
+                padding: 20px 18px 30px;
+            }
 
             .topbar {
-
                 flex-direction: column;
-
+                align-items: flex-start;
                 gap: 15px;
-
             }
-
 
             .topbar h1 {
-
                 font-size: 28px;
-
             }
-
 
             .stats {
-
-                grid-template-columns: 1fr;
-
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
             }
 
+            .stat-card {
+                min-width: 0;
+                min-height: 155px;
+                padding: 18px;
+            }
+
+            .stat-value {
+                font-size: 22px;
+                overflow-wrap: anywhere;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                min-width: 0;
+                padding: 19px 18px;
+            }
+
+            .panel-head {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main {
+                padding: 17px 13px 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                min-height: auto;
+            }
+
+            .topbar h1 {
+                font-size: 25px;
+            }
+
+            .panel {
+                padding: 17px 13px;
+            }
+
+            .donut {
+                width: 160px;
+                height: 160px;
+            }
+
+            .donut-center {
+                width: 124px;
+                height: 124px;
+            }
         }
 
     </style>

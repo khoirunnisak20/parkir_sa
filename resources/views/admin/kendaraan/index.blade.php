@@ -8,7 +8,6 @@
     <title>Data Kendaraan - Parkir Kabasa</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -21,29 +20,21 @@
             color: #16345C;
         }
 
-
-        /* =========================
-           LAYOUT
-        ========================= */
-
+        /* LAYOUT */
         .layout {
             display: flex;
             min-height: 100vh;
         }
 
-
-        /* =========================
-           SIDEBAR
-        ========================= */
-
+        /* SIDEBAR */
         .sidebar {
             width: 240px;
+            min-width: 240px;
             min-height: 100vh;
             background: #1E3762;
             padding: 25px 15px;
             color: white;
         }
-
 
         .brand {
             display: flex;
@@ -57,13 +48,11 @@
             font-size: 20px;
         }
 
-
         .menu {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
-
 
         .menu a {
             text-decoration: none;
@@ -73,18 +62,15 @@
             transition: 0.3s;
         }
 
-
         .menu a:hover {
             background: #2E4E85;
             color: white;
         }
 
-
         .menu a.active {
             background: #2E4E85;
             color: white;
         }
-
 
         .logout {
             margin-top: 30px;
@@ -98,52 +84,41 @@
             background: #b91c1c !important;
         }
 
-
-        /* =========================
-           MAIN CONTENT
-        ========================= */
-
+        /* MAIN CONTENT */
         .main {
             flex: 1;
+            min-width: 0;
             padding: 40px;
         }
-
 
         .header {
             margin-bottom: 30px;
         }
-
 
         .header h1 {
             color: #16345C;
             font-size: 30px;
         }
 
-
-        /* =========================
-           CARD
-        ========================= */
-
+        /* CARD */
         .card {
             background: white;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            min-width: 0;
         }
-
 
         .top {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
             margin-bottom: 20px;
         }
 
-
-        /* =========================
-           BUTTON TAMBAH
-        ========================= */
-
+        /* BUTTON TAMBAH */
         .btn-tambah {
             background: #1E4E8C;
             color: white;
@@ -157,11 +132,7 @@
             background: #2A5FA3;
         }
 
-
-        /* =========================
-           PESAN
-        ========================= */
-
+        /* PESAN */
         .success {
             background: #d1fae5;
             color: #047857;
@@ -169,7 +140,6 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
-
 
         .error-message {
             background: #fee2e2;
@@ -179,40 +149,37 @@
             margin-bottom: 20px;
         }
 
-
-        /* =========================
-           TABLE
-        ========================= */
+        /* TABLE */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
 
         table {
             width: 100%;
+            min-width: 650px;
             border-collapse: collapse;
         }
-
 
         table th {
             background: #1E4E8C;
             color: white;
             padding: 14px;
             text-align: left;
+            white-space: nowrap;
         }
-
 
         table td {
             padding: 13px;
             border-bottom: 1px solid #ddd;
         }
 
-
         table tr:hover {
             background: #f1f6fb;
         }
 
-
-        /* =========================
-           BUTTON EDIT
-        ========================= */
-
+        /* BUTTON EDIT */
         .btn-edit {
             background: #65c2df;
             color: white;
@@ -221,17 +188,15 @@
             border-radius: 6px;
             cursor: pointer;
             text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
         }
 
         .btn-edit:hover {
             background: #65c2df;
         }
 
-
-        /* =========================
-           BUTTON HAPUS
-        ========================= */
-
+        /* BUTTON HAPUS */
         .btn-hapus {
             background: #dc2626;
             color: white;
@@ -239,19 +204,22 @@
             padding: 8px 13px;
             border-radius: 6px;
             cursor: pointer;
-            margin-left: 5px;
+            white-space: nowrap;
         }
-
 
         .btn-hapus:hover {
             background: #b91c1c;
         }
 
-
         .form-hapus {
-            display: inline;
+            display: inline-block;
+            margin-left: 5px;
         }
 
+        /* KOLOM AKSI */
+        .aksi {
+            white-space: nowrap;
+        }
 
         .kosong {
             text-align: center;
@@ -259,37 +227,104 @@
             color: #6E88A8;
         }
 
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 768px) {
+        /* RESPONSIVE TABLET */
+        @media (max-width: 1000px) {
 
             .sidebar {
                 width: 200px;
+                min-width: 200px;
             }
 
             .main {
-                padding: 20px;
+                padding: 25px;
             }
 
+            .card {
+                padding: 20px;
+            }
+        }
+
+        /* RESPONSIVE LAYAR KECIL */
+        @media (max-width: 768px) {
+
+            .sidebar {
+                width: 180px;
+                min-width: 180px;
+                padding: 20px 10px;
+            }
+
+            .brand h2 {
+                font-size: 17px;
+            }
+
+            .menu a {
+                padding: 11px 10px;
+                font-size: 13px;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 15px;
+                border-radius: 10px;
+            }
+
+            .top h2 {
+                font-size: 18px;
+            }
+
+            .btn-tambah {
+                font-size: 13px;
+                padding: 9px 12px;
+            }
+        }
+
+        /* RESPONSIVE LAYAR SANGAT KECIL */
+        @media (max-width: 480px) {
+
+            .sidebar {
+                width: 155px;
+                min-width: 155px;
+                padding: 15px 8px;
+            }
+
+            .brand {
+                gap: 5px;
+                padding: 5px;
+            }
+
+            .brand h2 {
+                font-size: 15px;
+            }
+
+            .main {
+                padding: 10px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
         }
 
     </style>
 
 </head>
 
-
 <body>
 
 <div class="layout">
 
-
-    <!-- =========================
-         SIDEBAR
-    ========================= -->
-
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
         <div class="brand">
@@ -297,39 +332,32 @@
             <h2>Parkir Kabasa</h2>
         </div>
 
-
         <div class="menu">
 
             <a href="{{ route('admin.dashboard') }}">
                 🏠 Dashboard
             </a>
 
-
             <a href="{{ route('admin.kendaraan.index') }}"
                class="active">
                 🚗 Kendaraan
             </a>
 
-
             <a href="{{ route('admin.user.index') }}">
                 👥 Data User
             </a>
-
 
             <a href="{{ route('admin.area.index') }}">
                 🅿️ Area Parkir
             </a>
 
-
             <a href="{{ route('admin.tarif.index') }}">
                 💰 Tarif Parkir
             </a>
 
-
             <a href="{{ route('admin.log.index') }}">
                 📋 Log Aktivitas
             </a>
-
 
             <a href="{{ route('logout') }}"
                class="logout">
@@ -340,17 +368,12 @@
 
     </aside>
 
-
-    <!-- =========================
-         MAIN
-    ========================= -->
-
+    <!-- MAIN -->
     <main class="main">
 
         <div class="header">
             <h1>🚗 Data Kendaraan</h1>
         </div>
-
 
         {{-- PESAN BERHASIL --}}
         @if(session('success'))
@@ -361,7 +384,6 @@
 
         @endif
 
-
         {{-- PESAN ERROR --}}
         @if(session('error'))
 
@@ -371,9 +393,7 @@
 
         @endif
 
-
         <div class="card">
-
 
             <div class="top">
 
@@ -388,113 +408,103 @@
 
             </div>
 
+            <div class="table-responsive">
 
-            <table>
+                <table>
 
-                <thead>
-
-                    <tr>
-
-                        <th>ID</th>
-                        <th>Plat Nomor</th>
-                        <th>Jenis Kendaraan</th>
-                        <th>Pemilik</th>
-                        <th>Aksi</th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    @forelse($kendaraans as $kendaraan)
+                    <thead>
 
                         <tr>
-
-                            <td>
-                                {{ $kendaraan->id_kendaraan }}
-                            </td>
-
-
-                            <td>
-                                {{ $kendaraan->plat_nomor }}
-                            </td>
-
-
-                            <td>
-                                {{ ucfirst($kendaraan->jenis_kendaraan) }}
-                            </td>
-
-
-                            <td>
-                                {{ $kendaraan->pemilik }}
-                            </td>
-
-
-                            <td>
-
-                                {{-- EDIT --}}
-
-                                <a href="{{ route('admin.kendaraan.edit', $kendaraan->id_kendaraan) }}"
-                                   class="btn-edit">
-
-                                    ✏ Edit
-
-                                </a>
-
-
-                                {{-- HAPUS --}}
-
-                                <form action="{{ route('admin.kendaraan.delete', $kendaraan->id_kendaraan) }}"
-                                      method="POST"
-                                      class="form-hapus">
-
-                                    @csrf
-
-                                    @method('DELETE')
-
-                                    <button type="submit"
-                                            class="btn-hapus"
-                                            onclick="return confirm('Yakin ingin menghapus kendaraan ini?')">
-
-                                        🗑 Hapus
-
-                                    </button>
-
-                                </form>
-
-                            </td>
-
+                            <th>ID</th>
+                            <th>Plat Nomor</th>
+                            <th>Jenis Kendaraan</th>
+                            <th>Pemilik</th>
+                            <th>Aksi</th>
                         </tr>
 
-                    @empty
+                    </thead>
 
-                        <tr>
+                    <tbody>
 
-                            <td colspan="5"
-                                class="kosong">
+                        @forelse($kendaraans as $kendaraan)
 
-                                🚗 Belum ada data kendaraan.
+                            <tr>
 
-                            </td>
+                                <td>
+                                    {{ $kendaraan->id_kendaraan }}
+                                </td>
 
-                        </tr>
+                                <td>
+                                    {{ $kendaraan->plat_nomor }}
+                                </td>
 
-                    @endforelse
+                                <td>
+                                    {{ ucfirst($kendaraan->jenis_kendaraan) }}
+                                </td>
 
-                </tbody>
+                                <td>
+                                    {{ $kendaraan->pemilik }}
+                                </td>
 
-            </table>
+                                <td class="aksi">
 
+                                    {{-- EDIT --}}
+                                    <a href="{{ route('admin.kendaraan.edit', $kendaraan->id_kendaraan) }}"
+                                       class="btn-edit">
+
+                                        ✏ Edit
+
+                                    </a>
+
+                                    {{-- HAPUS --}}
+                                    <form action="{{ route('admin.kendaraan.delete', $kendaraan->id_kendaraan) }}"
+                                          method="POST"
+                                          class="form-hapus">
+
+                                        @csrf
+
+                                        @method('DELETE')
+
+                                        <button type="submit"
+                                                class="btn-hapus"
+                                                onclick="return confirm('Yakin ingin menghapus kendaraan ini?')">
+
+                                            🗑 Hapus
+
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td colspan="5"
+                                    class="kosong">
+
+                                    🚗 Belum ada data kendaraan.
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 
     </main>
 
-
 </div>
 
 </body>
-
 </html>

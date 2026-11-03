@@ -618,7 +618,8 @@
             }
 
             .stats{
-                grid-template-columns:repeat(2,1fr);
+                grid-template-columns:repeat(2,minmax(0,1fr));
+                gap:15px;
             }
 
             .content-grid{
@@ -626,6 +627,8 @@
             }
 
         }
+
+        /* ================= LAYAR DIBAGI DUA ================= */
 
         @media(max-width:760px){
 
@@ -648,11 +651,32 @@
             }
 
             .stats{
-                grid-template-columns:1fr;
+                grid-template-columns:repeat(2,minmax(0,1fr));
+                gap:12px;
             }
 
             .stat-card{
-                min-height:auto;
+                min-height:145px;
+                padding:16px;
+            }
+
+            .stat-icon{
+                width:40px;
+                height:40px;
+                margin-bottom:10px;
+            }
+
+            .stat-value{
+                font-size:21px;
+            }
+
+            .stat-label{
+                font-size:11px;
+            }
+
+            .stat-desc{
+                margin-top:9px;
+                font-size:10px;
             }
 
             .panel{
@@ -661,6 +685,48 @@
 
         }
 
+        /* ================= HP KECIL ================= */
+
+        @media(max-width:480px){
+
+            .main{
+                padding:18px 12px 25px;
+            }
+
+            .topbar h1{
+                font-size:24px;
+            }
+
+            .stats{
+                grid-template-columns:1fr;
+            }
+
+            .stat-card{
+                min-height:auto;
+                padding:19px;
+            }
+
+            .stat-value{
+                font-size:24px;
+            }
+
+            .panel{
+                padding:14px;
+            }
+
+        }
+
+        /* ================= TABEL ================= */
+
+        .table-wrap{
+            width:100%;
+            overflow-x:auto;
+            -webkit-overflow-scrolling:touch;
+        }
+
+        .table-wrap table{
+            min-width:560px;
+        }
     </style>
 
 </head>

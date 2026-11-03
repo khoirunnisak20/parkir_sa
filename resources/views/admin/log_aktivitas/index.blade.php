@@ -21,7 +21,6 @@
             color: #16345C;
         }
 
-
         /* =========================
            LAYOUT
         ========================= */
@@ -31,13 +30,13 @@
             min-height: 100vh;
         }
 
-
         /* =========================
            SIDEBAR
         ========================= */
 
         .sidebar {
             width: 240px;
+            min-width: 240px;
             min-height: 100vh;
             background: #1E3762;
             padding: 25px 15px;
@@ -92,13 +91,13 @@
             background: #b91c1c !important;
         }
 
-
         /* =========================
            MAIN CONTENT
         ========================= */
 
         .main {
             flex: 1;
+            min-width: 0;
             padding: 40px;
         }
 
@@ -111,7 +110,6 @@
             color: #16345C;
         }
 
-
         /* =========================
            CARD
         ========================= */
@@ -121,6 +119,7 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            min-width: 0;
         }
 
         .card h2 {
@@ -128,13 +127,19 @@
             color: #1f2937;
         }
 
-
         /* =========================
            TABLE
         ========================= */
 
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         table {
             width: 100%;
+            min-width: 750px;
             border-collapse: collapse;
         }
 
@@ -143,6 +148,7 @@
             color: white;
             padding: 14px;
             text-align: left;
+            white-space: nowrap;
         }
 
         table td {
@@ -161,23 +167,98 @@
             color: #6E88A8;
         }
 
+        /* =========================
+           RESPONSIVE TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .sidebar {
+                width: 200px;
+                min-width: 200px;
+            }
+
+            .main {
+                padding: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+        }
 
         /* =========================
-           RESPONSIVE
+           RESPONSIVE LAYAR KECIL
         ========================= */
 
         @media (max-width: 768px) {
 
             .sidebar {
-                width: 200px;
+                width: 180px;
+                min-width: 180px;
+                padding: 20px 10px;
+            }
+
+            .brand h2 {
+                font-size: 17px;
+            }
+
+            .menu a {
+                padding: 11px 10px;
+                font-size: 13px;
             }
 
             .main {
-                padding: 20px;
+                padding: 15px;
             }
 
-            table {
-                font-size: 14px;
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 15px;
+                border-radius: 10px;
+            }
+
+            .card h2 {
+                font-size: 18px;
+            }
+
+        }
+
+        /* =========================
+           RESPONSIVE LAYAR SANGAT KECIL
+        ========================= */
+
+        @media (max-width: 480px) {
+
+            .sidebar {
+                width: 155px;
+                min-width: 155px;
+                padding: 15px 8px;
+            }
+
+            .brand {
+                gap: 5px;
+                padding: 5px;
+            }
+
+            .brand h2 {
+                font-size: 15px;
+            }
+
+            .main {
+                padding: 10px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 20px;
             }
 
         }
@@ -186,11 +267,9 @@
 
 </head>
 
-
 <body>
 
 <div class="layout">
-
 
     <!-- =========================
          SIDEBAR
@@ -203,54 +282,41 @@
             <h2>Parkir Kabasa</h2>
         </div>
 
-
         <div class="menu">
-
 
             <a href="{{ route('admin.dashboard') }}">
                 🏠 Dashboard
             </a>
 
-
             <a href="{{ route('admin.kendaraan.index') }}">
                 🚗 Kendaraan
             </a>
-
 
             <a href="{{ route('admin.user.index') }}">
                 👥 Data User
             </a>
 
-
             <a href="{{ route('admin.area.index') }}">
                 🅿️ Area Parkir
             </a>
 
-
             <a href="{{ route('admin.tarif.index') }}">
                 💰 Tarif Parkir
             </a>
-
-
-            <!-- MENU AKTIF -->
 
             <a href="{{ route('admin.log.index') }}"
                class="active">
                 📋 Log Aktivitas
             </a>
 
-
             <a href="{{ route('logout') }}"
                class="logout">
                 🚪 Logout
             </a>
 
-
         </div>
 
     </aside>
-
-
 
     <!-- =========================
          MAIN CONTENT
@@ -258,95 +324,82 @@
 
     <main class="main">
 
-
         <div class="header">
-
             <h1>📋 Log Aktivitas</h1>
-
         </div>
-
 
         <div class="card">
 
-
             <h2>Riwayat Aktivitas Sistem</h2>
 
+            <div class="table-responsive">
 
-            <table>
+                <table>
 
-                <thead>
-
-                    <tr>
-
-                        <th>No</th>
-                        <th>Nama User</th>
-                        <th>Username</th>
-                        <th>Aktivitas</th>
-                        <th>Waktu</th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    @forelse($logs as $log)
+                    <thead>
 
                         <tr>
-
-                            <td>
-                                {{ $loop->iteration }}
-                            </td>
-
-
-                            <td>
-                                {{ $log->nama_lengkap ?? '-' }}
-                            </td>
-
-
-                            <td>
-                                {{ $log->username ?? '-' }}
-                            </td>
-
-
-                            <td>
-                                {{ $log->aktivitas }}
-                            </td>
-
-
-                            <td>
-                                {{ $log->waktu_aktivitas }}
-                            </td>
-
+                            <th>No</th>
+                            <th>Nama User</th>
+                            <th>Username</th>
+                            <th>Aktivitas</th>
+                            <th>Waktu</th>
                         </tr>
 
+                    </thead>
 
-                    @empty
+                    <tbody>
 
-                        <tr>
+                        @forelse($logs as $log)
 
-                            <td colspan="5"
-                                class="kosong">
+                            <tr>
 
-                                📋 Belum ada riwayat aktivitas.
+                                <td>
+                                    {{ $loop->iteration }}
+                                </td>
 
-                            </td>
+                                <td>
+                                    {{ $log->nama_lengkap ?? '-' }}
+                                </td>
 
-                        </tr>
+                                <td>
+                                    {{ $log->username ?? '-' }}
+                                </td>
 
-                    @endforelse
+                                <td>
+                                    {{ $log->aktivitas }}
+                                </td>
 
-                </tbody>
+                                <td>
+                                    {{ $log->waktu_aktivitas }}
+                                </td>
 
-            </table>
+                            </tr>
 
+                        @empty
+
+                            <tr>
+
+                                <td colspan="5"
+                                    class="kosong">
+
+                                    📋 Belum ada riwayat aktivitas.
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 
-
     </main>
-
 
 </div>
 

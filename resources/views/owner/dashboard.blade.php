@@ -367,22 +367,147 @@
 
         .legend-item{font-size:11px;color:#7087a6}
 
+        
         /* RESPONSIVE */
+
+        /* Laptop dan layar sedang */
         @media(max-width:1200px){
-            .main{padding:28px 25px 38px}
-            .stats{grid-template-columns:repeat(2,1fr)}
-            .content-grid{grid-template-columns:1fr}
+            .main{
+                padding:28px 25px 38px;
+            }
+
+            .stats{
+                grid-template-columns:repeat(2,minmax(0,1fr));
+            }
+
+            .content-grid{
+                grid-template-columns:minmax(0,1fr);
+            }
+
+            .panel{
+                min-width:0;
+            }
+
+            .table-wrap{
+                width:100%;
+                overflow-x:auto;
+                -webkit-overflow-scrolling:touch;
+            }
+
+            table{
+                min-width:650px;
+            }
         }
 
-        @media(max-width:760px){
-            .sidebar{display:none}
-            .main{padding:22px 16px 30px}
-            .topbar{align-items:flex-start;flex-direction:column;gap:16px}
-            .topbar h1{font-size:28px}
-            .stats{grid-template-columns:1fr}
-            .stat-card{min-height:auto}
-            .panel{padding:17px}
+        /* Tablet */
+        @media(max-width:900px){
+            .sidebar{
+                width:210px;
+                min-width:210px;
+                padding:22px 13px 18px;
+            }
+
+            .main{
+                min-width:0;
+                padding:24px 20px 35px;
+            }
+
+            .topbar h1{
+                font-size:30px;
+            }
+
+            .content-grid{
+                grid-template-columns:minmax(0,1fr);
+            }
         }
+
+        /* HP */
+        @media(max-width:760px){
+            .sidebar{
+                display:none;
+            }
+
+            .main{
+                width:100%;
+                min-width:0;
+                padding:22px 16px 30px;
+            }
+
+            .topbar{
+                align-items:flex-start;
+                flex-direction:column;
+                gap:16px;
+                margin-bottom:24px;
+            }
+
+            .topbar h1{
+                font-size:28px;
+            }
+
+            .stats{
+                grid-template-columns:repeat(2,minmax(0,1fr));
+                gap:14px;
+            }
+
+            .stat-card{
+                min-height:auto;
+                padding:19px;
+            }
+
+            .content-grid{
+                grid-template-columns:minmax(0,1fr);
+                gap:16px;
+            }
+
+            .panel{
+                min-width:0;
+                padding:17px;
+            }
+
+            .panel-head{
+                flex-wrap:wrap;
+                align-items:flex-start;
+            }
+
+            .donut{
+                width:170px;
+                height:170px;
+            }
+
+            .donut-center{
+                width:120px;
+                height:120px;
+            }
+        }
+
+        /* HP kecil */
+        @media(max-width:480px){
+            .main{
+                padding:18px 12px 25px;
+            }
+
+            .topbar h1{
+                font-size:25px;
+            }
+
+            .sub{
+                font-size:12px;
+            }
+
+            .panel{
+                padding:14px;
+                border-radius:16px;
+            }
+
+            .stat-value{
+                font-size:23px;
+            }
+
+            .legend{
+                gap:12px;
+            }
+        }
+
 </style>
 
 </head>

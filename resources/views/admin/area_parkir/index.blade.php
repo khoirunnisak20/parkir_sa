@@ -21,15 +21,22 @@
             color: #16345C;
         }
 
+        /* =========================
+           LAYOUT
+        ========================= */
+
         .layout {
             display: flex;
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
+        /* =========================
+           SIDEBAR
+        ========================= */
 
         .sidebar {
             width: 240px;
+            min-width: 240px;
             min-height: 100vh;
             background: #1E3762;
             padding: 25px 15px;
@@ -83,11 +90,13 @@
             background: #b91c1c !important;
         }
 
-
-        /* MAIN */
+        /* =========================
+           MAIN
+        ========================= */
 
         .main {
             flex: 1;
+            min-width: 0;
             padding: 40px;
         }
 
@@ -99,25 +108,30 @@
             font-size: 30px;
         }
 
-
-        /* CARD */
+        /* =========================
+           CARD
+        ========================= */
 
         .card {
             background: white;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            min-width: 0;
         }
 
         .top {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
             margin-bottom: 20px;
         }
 
-
-        /* BUTTON */
+        /* =========================
+           BUTTON
+        ========================= */
 
         .btn-tambah {
             background: #1E4E8C;
@@ -138,6 +152,8 @@
             padding: 8px 13px;
             border-radius: 6px;
             text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
         }
 
         .btn-hapus {
@@ -147,11 +163,16 @@
             padding: 8px 13px;
             border-radius: 6px;
             cursor: pointer;
-            margin-left: 5px;
+            white-space: nowrap;
         }
 
+        .btn-hapus:hover {
+            background: #b91c1c;
+        }
 
-        /* PESAN */
+        /* =========================
+           PESAN
+        ========================= */
 
         .success {
             background: #d1fae5;
@@ -169,11 +190,19 @@
             margin-bottom: 20px;
         }
 
+        /* =========================
+           TABLE
+        ========================= */
 
-        /* TABLE */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
 
         table {
             width: 100%;
+            min-width: 700px;
             border-collapse: collapse;
         }
 
@@ -182,6 +211,7 @@
             color: white;
             padding: 14px;
             text-align: left;
+            white-space: nowrap;
         }
 
         table td {
@@ -193,8 +223,17 @@
             background: #f1f6fb;
         }
 
+        /* =========================
+           KOLOM AKSI
+        ========================= */
+
+        .aksi {
+            white-space: nowrap;
+        }
+
         .form-hapus {
-            display: inline;
+            display: inline-block;
+            margin-left: 5px;
         }
 
         .kosong {
@@ -203,16 +242,117 @@
             color: #6E88A8;
         }
 
+        /* =========================
+           RESPONSIVE TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .sidebar {
+                width: 200px;
+                min-width: 200px;
+            }
+
+            .main {
+                padding: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+        }
+
+        /* =========================
+           RESPONSIVE LAYAR KECIL
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .sidebar {
+                width: 180px;
+                min-width: 180px;
+                padding: 20px 10px;
+            }
+
+            .brand h2 {
+                font-size: 17px;
+            }
+
+            .menu a {
+                padding: 11px 10px;
+                font-size: 13px;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 15px;
+                border-radius: 10px;
+            }
+
+            .top h2 {
+                font-size: 18px;
+            }
+
+            .btn-tambah {
+                font-size: 13px;
+                padding: 9px 12px;
+            }
+
+        }
+
+        /* =========================
+           RESPONSIVE LAYAR SANGAT KECIL
+        ========================= */
+
+        @media (max-width: 480px) {
+
+            .sidebar {
+                width: 155px;
+                min-width: 155px;
+                padding: 15px 8px;
+            }
+
+            .brand {
+                gap: 5px;
+                padding: 5px;
+            }
+
+            .brand h2 {
+                font-size: 15px;
+            }
+
+            .main {
+                padding: 10px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+        }
+
     </style>
 
 </head>
-
 
 <body>
 
 <div class="layout">
 
     <!-- SIDEBAR -->
+
     <aside class="sidebar">
 
         <div class="brand">
@@ -254,8 +394,8 @@
 
     </aside>
 
-
     <!-- MAIN -->
+
     <main class="main">
 
         <div class="header">
@@ -263,17 +403,20 @@
         </div>
 
         @if(session('success'))
+
             <div class="success">
                 ✅ {{ session('success') }}
             </div>
+
         @endif
 
         @if(session('error'))
+
             <div class="error-message">
                 ❌ {{ session('error') }}
             </div>
-        @endif
 
+        @endif
 
         <div class="card">
 
@@ -283,84 +426,109 @@
 
                 <a href="{{ route('admin.area.create') }}"
                    class="btn-tambah">
+
                     + Tambah Area
+
                 </a>
 
             </div>
 
+            <div class="table-responsive">
 
-            <table>
+                <table>
 
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nama Area</th>
-                        <th>Kapasitas</th>
-                        <th>Terisi</th>
-                        <th>Sisa Slot</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-
-
-                <tbody>
-
-                    @forelse($areas as $area)
+                    <thead>
 
                         <tr>
-
-                            <td>{{ $area->id_area }}</td>
-
-                            <td>{{ $area->nama_area }}</td>
-
-                            <td>{{ $area->kapasitas }}</td>
-
-                            <td>{{ $area->terisi }}</td>
-
-                            <td>
-                                {{ $area->kapasitas - $area->terisi }}
-                            </td>
-
-                            <td>
-
-                                <a href="{{ route('admin.area.edit', $area->id_area) }}"
-                                   class="btn-edit">
-                                    ✏ Edit
-                                </a>
-
-
-                                <form action="{{ route('admin.area.delete', $area->id_area) }}"
-                                      method="POST"
-                                      class="form-hapus">
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit"
-                                            class="btn-hapus"
-                                            onclick="return confirm('Yakin ingin menghapus area ini?')">
-                                        🗑 Hapus
-                                    </button>
-
-                                </form>
-
-                            </td>
-
+                            <th>ID</th>
+                            <th>Nama Area</th>
+                            <th>Kapasitas</th>
+                            <th>Terisi</th>
+                            <th>Sisa Slot</th>
+                            <th>Aksi</th>
                         </tr>
 
-                    @empty
+                    </thead>
 
-                        <tr>
-                            <td colspan="6" class="kosong">
-                                🅿️ Belum ada data area parkir.
-                            </td>
-                        </tr>
+                    <tbody>
 
-                    @endforelse
+                        @forelse($areas as $area)
 
-                </tbody>
+                            <tr>
 
-            </table>
+                                <td>
+                                    {{ $area->id_area }}
+                                </td>
+
+                                <td>
+                                    {{ $area->nama_area }}
+                                </td>
+
+                                <td>
+                                    {{ $area->kapasitas }}
+                                </td>
+
+                                <td>
+                                    {{ $area->terisi }}
+                                </td>
+
+                                <td>
+                                    {{ $area->kapasitas - $area->terisi }}
+                                </td>
+
+                                <td class="aksi">
+
+                                    {{-- EDIT --}}
+
+                                    <a href="{{ route('admin.area.edit', $area->id_area) }}"
+                                       class="btn-edit">
+
+                                        ✏ Edit
+
+                                    </a>
+
+                                    {{-- HAPUS --}}
+
+                                    <form action="{{ route('admin.area.delete', $area->id_area) }}"
+                                          method="POST"
+                                          class="form-hapus">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit"
+                                                class="btn-hapus"
+                                                onclick="return confirm('Yakin ingin menghapus area ini?')">
+
+                                            🗑 Hapus
+
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td colspan="6" class="kosong">
+
+                                    🅿️ Belum ada data area parkir.
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 
